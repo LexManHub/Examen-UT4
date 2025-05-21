@@ -1,20 +1,20 @@
 from abc import ABC, abstractmethod
 
 # Clase abstracta para representar una receta
-class receta(ABC):
+class Recetas(ABC):
     def __init__(self, n, i, p):
         self.n = n  # nombre
         self.i = i  # ingredientes
         self.p = p  # pasos
 
     @abstractmethod
-    def mostrar(self):
+    def mostrar_receta(self):
         pass
 
 
 # Clase para recetas vegetarianas
-class recV(receta):
-    def mostrar(self):
+class Recetas_Vegetarianas(Recetas):
+    def mostrar_receta(self):
         print(f"Receta vegetariana: {self.n}")
         print("Ingredientes:")
         for ing in self.i:
@@ -25,8 +25,8 @@ class recV(receta):
 
 
 # Clase para recetas no vegetarianas
-class recNV(receta):
-    def mostrar(self):
+class Receta_no_vegetarianas(Recetas):
+    def mostrar_receta(self):
         print(f"Receta NO vegetariana: {self.n}")
         print("Ingredientes:")
         for ing in self.i:
@@ -37,7 +37,7 @@ class recNV(receta):
 
 
 # Clase con utilidades del restaurante
-class utilidades:
+class Utilidades_Restaurante:
     @staticmethod
     def imprimir_receta(r):
         print("====================================")
@@ -51,13 +51,13 @@ class utilidades:
 
 # Función principal
 def principal():
-    r1 = recV("Ensalada César", ["lechuga", "queso", "pan tostado", "salsa"], ["Lavar", "Mezclar", "Servir"])
-    r2 = recNV("Pollo al horno", ["pollo", "patatas", "ajo", "aceite"], ["Preparar", "Hornear", "Servir"])
+    r1 = Recetas_Vegetarianas("Ensalada César", ["lechuga", "queso", "pan tostado", "salsa"], ["Lavar", "Mezclar", "Servir"])
+    r2 = Receta_no_vegetarianas("Pollo al horno", ["pollo", "patatas", "ajo", "aceite"], ["Preparar", "Hornear", "Servir"])
     
     # Duplicación de código al imprimir
     print("== Mostrar recetas ==")
-    utilidades.imprimir_receta(r1)
-    utilidades.imprimir_receta(r2)
+    Utilidades_Restaurante.imprimir_receta(r1)
+    Utilidades_Restaurante.imprimir_receta(r2)
 
     # Código duplicado para mostrar ingredientes
     print("Ingredientes de Ensalada César:")
