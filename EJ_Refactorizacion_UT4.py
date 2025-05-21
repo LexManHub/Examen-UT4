@@ -26,53 +26,46 @@ class Mostrar_Receta(Recetas):
                 break
             pasos.append(dato)
 
-        return nombre,ingredientes,pasos
+        Recetas(nombre,ingredientes,pasos)
 
 
 
 # Clase para recetas vegetarianas
 class Recetas_Vegetarianas(Recetas):
-    print(f"Receta vegetariana: {Recetas.n}")
-    print(f"Ingredientes: {Mostrar_Receta.lista_recetas()}")
+    def __init__(self, n, i, p, vegetariana):
+        super().__init__(n, i, p)
+        self.vegetariana = vegetariana
 
 
 # Clase para recetas no vegetarianas
 class Receta_no_vegetarianas(Recetas):
-    print(f"Receta NO vegetariana: {Recetas.n}")
-    print(f"Ingredientes: {Mostrar_Receta.lista_recetas()}")
+    def __init__(self, n, i, p , carnivora):
+        super().__init__(n, i, p)
+        self.carnivora = carnivora
 
-  
+
         
 
 
-
-
-# Clase con utilidades del restaurante
-class Utilidades_Restaurante:
-    @staticmethod
-    def imprimir_receta(r):
-        print("====================================")
-        r.mostrar()
-        print("====================================")
-
-    @staticmethod
-    def mostrar_lista_ingredientes(lista):
-        for l in lista:
-            print(f"* {l}")
-
 # Función principal
 def principal():
+    Mostrar_Receta.lista_recetas()
 
+    tipo = input("¿Que tipo de receta quieres crear?").lower()
+    if tipo == "vegetariana":
+        print("== Crear receta 1 vegetariana ==")
+        apta_para_vegana = input("Indica si es apta para veganos: ")
+        r1 = Recetas_Vegetarianas(Recetas.n,Recetas.i,Recetas.p,apta_para_vegana)
+    elif tipo == "carnivora":
+        print("== Crear receta 1 vegetariana ==")
+        apta_para_carnivora = input("Introduce el tipo de carne")
+        r2 = Receta_no_vegetarianas(Recetas.n,Recetas.i,Recetas.p,apta_para_carnivora)
+    else:
+        print("El tipo de receta inficado no es el correcto")
 
-    # Código duplicado para mostrar ingredientes
-    print("Ingredientes de Ensalada César:")
-    for ing in r1.i:
-        print(f"* {ing}")
     
-    print("Ingredientes de Pollo al horno:")
-    for ing in r2.i:
-        print(f"* {ing}")
-
+    #mostrar recetas
+    print(r1,r2)
 
 # Ejecutar el programa
 if __name__ == "__main__":
