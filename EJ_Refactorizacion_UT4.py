@@ -10,11 +10,23 @@ class Recetas(ABC):
 
 class Mostrar_Receta(Recetas):
     def lista_recetas():
-        for ing in Recetas.i:
-            print(f"- {ing}")
-        print("Pasos:")
-        for paso in Recetas.p:
-            print(f"{paso}")
+        nombre = input("Nombre de la receta: ")
+        ingredientes = []
+        print("Introduce los ingredientes (escribe 'fin' para terminar): ")
+        while True:
+            ing = input("- ")
+            if ing.lower() == "fin":
+                break
+            ingredientes.append(ing)
+        pasos = []
+        print("Introduce los pasos(escribe fin para terminar): ")
+        while True:
+            dato = input ("- ")
+            if dato.lower() == "fin":
+                break
+            pasos.append(dato)
+
+        return nombre,ingredientes,pasos
 
 
 
@@ -50,13 +62,7 @@ class Utilidades_Restaurante:
 
 # Función principal
 def principal():
-    r1 = Recetas_Vegetarianas("Ensalada César", ["lechuga", "queso", "pan tostado", "salsa"], ["Lavar", "Mezclar", "Servir"])
-    r2 = Receta_no_vegetarianas("Pollo al horno", ["pollo", "patatas", "ajo", "aceite"], ["Preparar", "Hornear", "Servir"])
-    
-    # Duplicación de código al imprimir
-    print("== Mostrar recetas ==")
-    Utilidades_Restaurante.imprimir_receta(r1)
-    Utilidades_Restaurante.imprimir_receta(r2)
+
 
     # Código duplicado para mostrar ingredientes
     print("Ingredientes de Ensalada César:")
